@@ -9,6 +9,8 @@ app.set('pkg', pkg);
 
 // Developer middleware
 app.use(morgan('dev'));
+// Handles data as JSON
+app.use(express.json());
 
 app.get('/', (req, res) => {
     res.json({
@@ -18,10 +20,5 @@ app.get('/', (req, res) => {
         version: app.get('pkg').version,
     });
 });
-
-
-
-
-
 
 export default app;
