@@ -7,8 +7,14 @@ import { config } from 'dotenv';
 import routes from './routes';
 import './database';
 
-// Config
+/**
+ * CONFIG
+ * inits app with express,
+ * disables x-powered-by header
+ * enables custom file to load env vars
+ */
 const app = express();
+app.disable('x-powered-by');
 config({ path: __dirname + '/.env' });
 
 // Developer middleware
@@ -21,8 +27,7 @@ app.use(express.json());
 app.use(cors());
 
 // Helmet
-app.use(helmet().hidePoweredBy());
-app.disable('x-powered-by');
+app.use(helmet());
 
 // General routes
 app.use('/api', routes);
