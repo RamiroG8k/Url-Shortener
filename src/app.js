@@ -1,8 +1,10 @@
 // Common Modules
 import express from 'express';
 import morgan from 'morgan';
-import routes from './routes';
+import helmet from 'helmet';
+import cors from 'cors';
 import { config } from 'dotenv';
+import routes from './routes';
 import './database';
 
 // Config
@@ -12,8 +14,15 @@ config({ path: __dirname + '/.env' });
 // Developer middleware
 app.use(morgan('dev'));
 
-// Handles data as JSON
+// Data as JSON
 app.use(express.json());
+
+// Cors
+app.use(cors());
+
+// Helmet
+app.use(helmet().hidePoweredBy());
+app.disable('x-powered-by');
 
 // General routes
 app.use('/api', routes);

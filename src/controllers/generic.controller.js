@@ -1,12 +1,7 @@
 import Generic from '../models/Generic';
 
 export const sayHi = async (req, res) => {
-    // const { name, quantity } = req.body;
-
-    // const newGeneric = new Product({ name, quantity });
-
-    // res.status(201).json({ message: 'Hello world', data: newGeneric});
-    res.status(201).json({ message: 'Hello world' });
+    res.status(200).json({ message: 'Hello world' });
 };
 
 export const postModel = async (req, res) => {
