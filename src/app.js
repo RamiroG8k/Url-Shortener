@@ -7,7 +7,7 @@ import './database';
 
 // Config
 const app = express();
-config({path: __dirname + '/.env'});
+config({ path: __dirname + '/.env' });
 
 // Developer middleware
 app.use(morgan('dev'));
