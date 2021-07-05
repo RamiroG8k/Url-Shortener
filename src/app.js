@@ -1,24 +1,24 @@
+// Common Modules
 import express from 'express';
 import morgan from 'morgan';
-import pkg from  '../package.json';
+import routes from './routes';
+import { config } from 'dotenv';
+import './database';
 
+// Config
 const app = express();
-
-// Get info from package.json
-app.set('pkg', pkg);
+config({path: __dirname + '/.env'});
 
 // Developer middleware
 app.use(morgan('dev'));
+
 // Handles data as JSON
 app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.json({
-        name: app.get('pkg').name,
-        author: app.get('pkg').author,
-        description: app.get('pkg').description,
-        version: app.get('pkg').version,
-    });
-});
+// General routes
+app.use('/api', routes);
 
-export default app;
+// Init
+app.listen(process.env.PORT, () => {
+    console.log('Server listening on Port:', process.env.PORT);
+});
