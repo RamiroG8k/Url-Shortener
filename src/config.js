@@ -1,4 +1,4 @@
-// Secret token handler
-export default {
-    SECRET: 'basic-api'
-}
+import { config } from 'dotenv';
+import path from 'path';
+
+config({ path: __dirname + '/.env' });

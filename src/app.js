@@ -1,9 +1,9 @@
 // Common Modules
+import './config';
 import express from 'express';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import cors from 'cors';
-import { config } from 'dotenv';
 import routes from './routes';
 import './database';
 
@@ -15,7 +15,6 @@ import './database';
  */
 const app = express();
 app.disable('x-powered-by');
-config({ path: __dirname + '/.env' });
 
 // Developer middleware
 app.use(morgan('dev'));
