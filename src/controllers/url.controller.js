@@ -1,6 +1,6 @@
 import Url from '../models/UrlModel';
-import * as validUrl from 'valid-url';
-import * as shortid from 'shortid';
+import { isUri } from 'valid-url';
+import { generate } from 'shortid';
 
 export const redirect = async (req, res) => {
     try {
@@ -17,10 +17,7 @@ export const redirect = async (req, res) => {
             return res.status(404).json('No URL Found');
         }
 
-    }
-    // exception handler
-    catch (err) {
-        console.error(err);
+    } catch (err) {
         res.status(500).json('Server Error');
     }
 };
@@ -32,16 +29,15 @@ export const makeShort = async (req, res) => {
     const baseUrl = 'http:localhost:3000/api/url'
 
     // check base url if valid using the validUrl.isUri method
-    if (!validUrl.isUri(baseUrl)) {
+    if (!isUri(baseUrl)) {
         return res.status(401).json('Invalid base URL')
     }
 
-    // if valid, we create the url code
-    const urlCode = shortid.generate()
-
-    console.log(longUrl);
     // check long url if valid using the validUrl.isUri method
-    if (validUrl.isUri(longUrl)) {
+    if (isUri(longUrl)) {
+
+        // if valid, we create the url code
+        const urlCode = generate();
         try {
             /* The findOne() provides a match to only the subset of the documents 
             in the collection that match the query. In this case, before creating the short URL,

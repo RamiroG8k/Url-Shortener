@@ -1,5 +1,5 @@
 {
-  "name": "node-api",
+  "name": "shorty",
   "version": "1.0.0",
   "author": "Ramiro Mendez Lopez",
   "description": "Basic dependencies in Rest API with auth",
