@@ -1,7 +1,6 @@
 import express from 'express';
 import genericRoutes from './generic.routes';
 import pkg from '../../package.json';
-import { connectApi } from '../whatsapp';
 
 const routes = express();
 
@@ -16,8 +15,6 @@ routes.get('/', (req, res) => {
         version: routes.get('pkg').version,
     });
 });
-
-routes.get('/auth', connectApi);
 
 routes.use('/generic', genericRoutes);
 
